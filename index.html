@@ -80,12 +80,18 @@
   }
   .hero-bg {
     position: absolute; inset: 0;
-    background: linear-gradient(125deg, #0d0010 0%, #1a0626 25%, #3d0b2c 55%, #8b1a3a 80%, #e50914 100%);
+    background-image: url('Homepage.jpeg');
+    background-size: cover;
+    background-position: center top;
+    background-repeat: no-repeat;
+    transform: scale(1.04);
+    transition: transform 8s ease;
   }
+  .hero-bg.loaded { transform: scale(1); }
   .hero-grain {
     position: absolute; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.06'/%3E%3C/svg%3E");
-    opacity: 0.4; pointer-events: none;
+    background: linear-gradient(125deg, rgba(13,0,16,0.55) 0%, rgba(26,6,38,0.4) 40%, rgba(0,0,0,0.25) 100%);
+    pointer-events: none;
   }
   .hero-fade {
     position: absolute; bottom: 0; left: 0; right: 0;
@@ -777,6 +783,11 @@ function showToast(msg) {
 document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
 
 init();
+
+const heroBg = document.querySelector('.hero-bg');
+const img = new Image();
+img.src = 'Homepage.jpeg';
+img.onload = () => heroBg.classList.add('loaded');
 </script>
 </body>
 </html>
