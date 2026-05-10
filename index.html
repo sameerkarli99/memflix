@@ -489,8 +489,8 @@
   <div class="hero-fade"></div>
   <div class="hero-content">
     <div class="hero-eyebrow">✦ Featured Memory</div>
-    <h1 class="hero-title" id="heroTitle">Chapter 1:<br><em>The Beginning</em></h1>
-    <p class="hero-desc" id="heroDesc">The universe conspired to bring us together on the most perfect day. A moment I replay on repeat, every single day.</p>
+    <h1 class="hero-title" id="heroTitle">Mansi<br><em>&amp; Sameer</em></h1>
+    <p class="hero-desc" id="heroDesc">Two people, a thousand moments, and a love story still being written — this one is all ours. 💕</p>
     <div class="hero-actions">
       <button class="btn btn-primary" onclick="openHeroMemory()">▶ Watch</button>
       <button class="btn btn-secondary" onclick="openHeroMemory()">More Info</button>
@@ -626,7 +626,7 @@ const CAT_GRADIENTS = {
 
 const TOP10 = [
   { title: 'Where it all started',        date: '2018-20',       caption: 'The UG 💕',                                photo: 'mem1.JPG',   emoji: '💕' },
-  { title: 'Our own prom',                date: '2019',          caption: 'Scared & Delighted to be in frame ✈️',    photo: 'mem2.jpg',  emoji: '✈️' },
+  { title: 'Our own prom',                date: '2019',          caption: 'Scared & Delighted to be in frame ✈️',    photo: 'mem2.jpeg',  emoji: '✈️' },
   { title: 'Parting ways',               date: '2020',          caption: 'Heavy hearted farewell 🌙',                photo: 'mem3.JPG',   emoji: '🌙' },
   { title: 'Love reunited and rekindled', date: 'Apr 27, 2024',  caption: 'I was veryyyyy happy 🎂',                 photo: 'mem4.jpeg',  emoji: '🎂' },
   { title: 'First official date',         date: 'Jul 1, 2023',   caption: 'My favourite ritual ☕',                  photo: 'mem5.jpeg',  emoji: '☕' },
@@ -738,10 +738,7 @@ function init() {
 
 // ── HERO ──
 function updateHero() {
-  const featured = memories[0];
-  if (!featured) return;
-  document.getElementById('heroTitle').innerHTML = featured.title.replace(': ', ':<br><em>') + '</em>';
-  document.getElementById('heroDesc').textContent = featured.desc;
+  // Title and desc are fixed — only stats update dynamically
 }
 
 function updateStats() {
