@@ -616,40 +616,6 @@
 
 <script>
 // ── DATA ──
-const TOP10 = [
-  { title: 'Where it all started',   date: '2018-20', caption: 'The UG 💕',          photo: 'mem1.JPG',  emoji: '💕' },
-  { title: 'Our own prom',        date: '2019',  caption: 'Scared & Delighted to be in fram ✈️',               photo: 'mem2.jpeg',  emoji: '✈️' },
-  { title: 'Parting ways',      date: '2020', caption: 'Heavy hearted farewell 🌙',      photo: 'mem3.JPG',  emoji: '🌙' },
-  { title: 'Love reunited and rekindled',    date: 'Apr 27, 2024',  caption: 'I was veryyyyy happy 🎂',       photo: 'mem4.jpeg',  emoji: '🎂' },
-  { title: 'First official date',   date: 'Jul 1, 2023',  caption: 'My favourite ritual ☕',           photo: 'mem5.jpeg',  emoji: '☕' },
-  { title: 'Marines & you',     date: 'Aug 12, 2023', caption: 'Best sunset of Mumbai 🏖️',         photo: 'mem6.jpeg',  emoji: '🏖️' },
-  { title: 'GRWM',    date: 'Oct 18, 2023', caption: 'Get Ready with Meansiii',    photo: 'mem7.jpeg',  emoji: '🏔️' },
-  { title: 'Two goofy lovers',         date: 'Jan 1, 2024',  caption: 'This is very cute, you'd agree 🎉',           photo: 'mem8.jpeg',  emoji: '🎉' },
-  { title: 'De Pauls',    date: 'Mar 5, 2024',  caption: 'Hot Chocolate with Hot coupld 🌸',   photo: 'mem9.jpeg',  emoji: '🌸' },
-  { title: 'Bestest Evening Spent',          date: 'Apr 2024',     caption: 'This is the sweetest memory of us 💌',     photo: 'mem10.jpeg', emoji: '💌' },
-];
-
-function renderTop10() {
-  const row = document.getElementById('top10Row');
-  row.innerHTML = '';
-  TOP10.forEach((m, i) => {
-    const card = document.createElement('div');
-    card.className = 'top10-card';
-    card.innerHTML = `
-      <div class="top10-num">${i + 1}</div>
-      <div class="top10-img-wrap">
-        <img src="${m.photo}" alt="${m.title}"
-          onerror="this.style.display='none';this.parentElement.innerHTML='<div class=top10-fallback style=background:${encodeURIComponent(CAT_GRADIENTS['First Moments'])}>${m.emoji}</div>'">
-      </div>
-      <div class="top10-caption">
-        <strong>${m.title}</strong>${m.caption}
-      </div>`;
-    row.appendChild(card);
-  });
-}
-
-const EMOJIS = ['💕','🌅','🌙','🎉','🍕','✈️','🎂','🌸','🏖️','🌿','🎶','☕','🍷','🌟','🏔️','🦋','🎭','💌','🌈','🎠'];
-
 const CAT_GRADIENTS = {
   'First Moments': 'linear-gradient(135deg, #1a0a2e 0%, #6b1a3d 100%)',
   'Adventures':    'linear-gradient(135deg, #0a1f0d 0%, #1a5c2e 100%)',
@@ -657,6 +623,50 @@ const CAT_GRADIENTS = {
   'Celebrations':  'linear-gradient(135deg, #1f1200 0%, #7a4500 100%)',
   'Everyday Magic':'linear-gradient(135deg, #0a0f1f 0%, #1a2e5c 100%)',
 };
+
+const TOP10 = [
+  { title: 'Where it all started',        date: '2018-20',       caption: 'The UG 💕',                                photo: 'mem1.JPG',   emoji: '💕' },
+  { title: 'Our own prom',                date: '2019',          caption: 'Scared & Delighted to be in frame ✈️',    photo: 'mem2.jpeg',  emoji: '✈️' },
+  { title: 'Parting ways',               date: '2020',          caption: 'Heavy hearted farewell 🌙',                photo: 'mem3.JPG',   emoji: '🌙' },
+  { title: 'Love reunited and rekindled', date: 'Apr 27, 2024',  caption: 'I was veryyyyy happy 🎂',                 photo: 'mem4.jpeg',  emoji: '🎂' },
+  { title: 'First official date',         date: 'Jul 1, 2023',   caption: 'My favourite ritual ☕',                  photo: 'mem5.jpeg',  emoji: '☕' },
+  { title: 'Marines & you',              date: 'Aug 12, 2023',  caption: 'Best sunset of Mumbai 🏖️',                photo: 'mem6.jpeg',  emoji: '🏖️' },
+  { title: 'GRWM',                        date: 'Oct 18, 2023',  caption: 'Get Ready with Meansiii 🌸',              photo: 'mem7.jpeg',  emoji: '🌸' },
+  { title: 'Two goofy lovers',            date: 'Jan 1, 2024',   caption: 'This is very cute, you would agree 🎉',   photo: 'mem8.jpeg',  emoji: '🎉' },
+  { title: 'De Pauls',                    date: 'Mar 5, 2024',   caption: 'Hot Chocolate with Hot couple 🍷',         photo: 'mem9.jpeg',  emoji: '🍷' },
+  { title: 'Bestest Evening Spent',       date: 'Apr 2024',      caption: 'This is the sweetest memory of us 💌',    photo: 'mem10.jpeg', emoji: '💌' },
+];
+
+function renderTop10() {
+  const row = document.getElementById('top10Row');
+  if (!row) return;
+  row.innerHTML = '';
+  TOP10.forEach((m, i) => {
+    const card = document.createElement('div');
+    card.className = 'top10-card';
+    const numDiv = document.createElement('div');
+    numDiv.className = 'top10-num';
+    numDiv.textContent = i + 1;
+    const imgWrap = document.createElement('div');
+    imgWrap.className = 'top10-img-wrap';
+    const imgEl = document.createElement('img');
+    imgEl.src = m.photo;
+    imgEl.alt = m.title;
+    imgEl.onerror = function() {
+      imgWrap.innerHTML = '<div class="top10-fallback" style="background:' + CAT_GRADIENTS['First Moments'] + '">' + m.emoji + '</div>';
+    };
+    imgWrap.appendChild(imgEl);
+    const caption = document.createElement('div');
+    caption.className = 'top10-caption';
+    caption.innerHTML = '<strong>' + m.title + '</strong>' + m.caption;
+    card.appendChild(numDiv);
+    card.appendChild(imgWrap);
+    card.appendChild(caption);
+    row.appendChild(card);
+  });
+}
+
+const EMOJIS = ['💕','🌅','🌙','🎉','🍕','✈️','🎂','🌸','🏖️','🌿','🎶','☕','🍷','🌟','🏔️','🦋','🎭','💌','🌈','🎠'];
 
 let selectedEmoji = '💕';
 let currentModalId = null;
